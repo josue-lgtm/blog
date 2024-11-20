@@ -1,0 +1,182 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Edit Profile</title>
+    <style>
+        /* General body and container styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fafafa;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .field input:focus {
+            border-color: #007bff;
+            background-color: #ffffff;
+            outline: none;
+        }
+
+        .field input[type="checkbox"] {
+            width: auto;
+            margin-top: 0;
+        }
+
+        .field em {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Error messages */
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        /* Submit button */
+        .actions {
+            text-align: center;
+        }
+
+        .actions input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Cancel button */
+        .cancel-btn {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cancel-btn button {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cancel-btn button:hover {
+            background-color: #c82333;
+        }
+
+        /* Link styles */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            font-size: 1.1em;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                margin-top: 30px;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+
+</html>
+
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+

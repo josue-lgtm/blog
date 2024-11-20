@@ -1,0 +1,186 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Blog</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <style>
+    /* General page styles */
+    body {
+        font-family: 'Lato', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    #page-top {
+        background-color: #ffffff;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #007bff;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 20px;
+    }
+
+    /* Style for the article */
+    p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    p strong {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .article-title {
+        font-size: 1.5em;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .article-text {
+        font-size: 1.2em;
+        color: #666;
+        line-height: 1.8;
+    }
+
+    /* Comments section */
+    .comments {
+        margin-top: 30px;
+    }
+
+    .comments h3 {
+        font-size: 1.3em;
+        color: #333;
+    }
+
+    .comment-item {
+        background-color: #f9f9f9;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .comment-item p {
+        font-size: 1em;
+        color: #555;
+    }
+
+    .comment-item strong {
+        font-weight: bold;
+    }
+
+    /* Form styles */
+    .comment-form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+
+    .comment-form input, .comment-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .comment-form textarea {
+        height: 150px;
+    }
+
+    .comment-form button {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+    }
+
+    .comment-form button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Links */
+    a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Error styling */
+    #error_explanation {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    #error_explanation ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    #error_explanation li {
+        margin-bottom: 5px;
+    }
+
+    </style>
+</head>
+<body id="page-top">
+<%= button_to 'Cerrar sesion', destroy_user_session_path, method: :delete %>
+    <div id="page-top">
+        <%= form_for @article do |f| %>
+        <% if @article.errors.any? %>
+            <div id="error_explanation">
+                <h2>
+                    <%= pluralize(@article.errors.count, "error") %> prohibited
+                    this article from being saved:
+                </h2>
+                <ul>
+                    <% @article.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+        
+        <p>
+            <%= f.label :title, "Article Title" %><br>
+            <%= f.text_field :title, placeholder: "Enter the article title", class: "form-control" %>
+        </p>
+        
+        <p>
+            <%= f.label :text, "Content" %><br>
+            <%= f.text_area :text, placeholder: "Write your article here...", class: "form-control" %>
+        </p>
+        
+        <p>
+            <%= f.submit "Publish Article", class: "btn btn-primary" %>
+        </p>
+        <% end %>
+    </div>
+</body>
+</html>
